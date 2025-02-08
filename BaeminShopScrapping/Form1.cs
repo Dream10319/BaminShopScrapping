@@ -116,7 +116,7 @@ namespace BaeminShopScrapping
                     request.AddHeader("Connection", "Keep-Alive");
                     request.AddHeader("Host", "shopdp-api.baemin.com");
                     request.AddHeader("User-Agent", "and1_12.23.0");
-                    request.AddHeader("USER-BAEDAL", "W/OnG34HSvOVmxn4McyeRzEK3Ldc9+ruPokFIKgQcm0zVU8aOlNuihy2TNW+7I7ZBORlK3kvRun7bOtwlyMA9PnUeLy01xw69qCQLwVBmJdm/hJB8mRTF8vkzRUt/1qkIjb9Tto92g2qIH9ldixRCvPKlFkepp+bOCN6lWvdTIvEx8s0W2jVWA4NWbjnwqqLvKR0wjQxP9pPG3heaCdvvA==");
+                    request.AddHeader("USER-BAEDAL", "W/OnG34HSvOVmxn4McyeRzEK3Ldc9+ruPokFIKgQcm2WNLVj7olTxJ0p1zFrDCSZNSn3awPLFRB7F7SLiZOBxY5dp1ciNVpOX4dPZMCvouEui+ogBfrZb1Pjq9MjIKgPTZ0PsoEXEDVbIayRYi3FqT19ktIosfMynUFcdCj6Qdpz/m8+MSoP9SsUAtxB8t2W+KD/mAlr8ojTCP1x0n5tWG31re4ZOComuGzviiuX7wpkfSLsshuaV9mNVXcByHNw");
                     string strReturn = client.ExecuteGet(request).Content;
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     dynamic data = jss.Deserialize<dynamic>(strReturn);
@@ -146,7 +146,7 @@ namespace BaeminShopScrapping
                             {
                                 try
                                 {
-                                    strUrl = string.Format(@"https://shopdp-api.baemin.com/v3/BAEMIN/shops?displayCategory={3}&longitude={0}&latitude={1}&sort=SORT__DEFAULT&filter=&offset={2}&limit=25&extension=&perseusSessionId=1718023403008.788454282780365941.FWy8AA9FNv&memberNumber=000000000000&sessionId=b4e3292329dfd570f054c8&carrier=302780&site=7jWXRELC2e&dvcid=OPUD6086af457479a7bb&adid=aede849f-5e9c-499f-827f-cb4e5c65d801&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=11140102&zipCode=04522&ActionTrackingKey=Organic", Longitude.ToString(), Latitude.ToString(), 25 * i, Category.Text);
+                                    strUrl = string.Format(@"https://shopdp-api.baemin.com/v3/BAEMIN/shops?displayCategory={3}&longitude={0}&latitude={1}&sort=SORT__DEFAULT&filter=&offset={2}&limit=25&extension=&perseusSessionId=1738983528177.747641265099996874.MPdNU86586&memberNumber=000000000000&sessionId=17b5632f7742526e26a535687&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=28237101&zipCode=21404&ActionTrackingKey=Organic", Longitude.ToString(), Latitude.ToString(), 25 * i, categories[l]["code"].ToString());
                                     File.WriteAllText("log.txt", Environment.NewLine + "lat:" + Lat.Text + ", lon:" + Lon.Text + ", offset:" + i.ToString() + ", catindex:" + l.ToString());
                                     this.Invoke(new Action(() =>
                                     {
@@ -169,7 +169,7 @@ namespace BaeminShopScrapping
                                             {
                                                 try
                                                 {
-                                                    strUrl = string.Format(@"https://shopdp-api.baemin.com/v8/shop/{0}/detail?lat={1}&lng={2}&limit=25&mem=&memid=&defaultreview=N&campaignId=2353465&displayGroup=BAEMIN&lat4Distance=37.5670653&lng4Distance=126.98168738&filter=&sessionId=1447226b282d5e40f677b5a1d37&carrier=302780&site=7jWXRELC2e&dvcid=OPUD6086af457479a7bb&adid=aede849f-5e9c-499f-827f-cb4e5c65d801&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=11140102&zipCode=04522&ActionTrackingKey=Organic", shopnumber, Latitude.ToString(), Longitude.ToString());
+                                                    strUrl = string.Format(@"https://shopdp-api.baemin.com/v8/shop/{0}/detail?lat={1}&lng={2}&limit=25&mem=&memid=&defaultreview=N&campaignId=2353465&displayGroup=BAEMIN&lat4Distance=37.5670653&lng4Distance=126.98168738&filter=&sessionId=17b5632f7742526e26a535687&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=&zipCode=&ActionTrackingKey=Organic", shopnumber, Latitude.ToString(), Longitude.ToString());
                                                     client = new RestClient(strUrl);
                                                     strReturn = client.ExecuteGet(request).Content;
                                                     if (strReturn.Contains("SUCCESS"))
@@ -188,7 +188,7 @@ namespace BaeminShopScrapping
                                                             if(groupMenu["menus"] != null)
                                                             foreach (var menu in groupMenu["menus"])
                                                             {
-                                                                strUrl = string.Format($@"https://shopdp-api.baemin.com/v1/shops/{shopnumber}/menus/{menu["menuId"]}?useDelivery=true&useTakeout=true&useTableOrder=false&sessionId=1bd602fb042e017b54087217&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=28237101&zipCode=21404&ActionTrackingKey=Organic");
+                                                                strUrl = string.Format($@"https://shopdp-api.baemin.com/v1/shops/{shopnumber}/menus/{menu["menuId"]}?useDelivery=true&useTakeout=false&useTableOrder=false&sessionId=17b5632f7742526e26a535687&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=&zipCode=&ActionTrackingKey=Organic");
                                                                 client = new RestClient(strUrl);
                                                                 strReturn = client.ExecuteGet(request).Content;
                                                                 File.WriteAllText(string.Format(@"{0}\{1}-{2}.json", dir, shopnumber, menu["menuId"]), strReturn);
