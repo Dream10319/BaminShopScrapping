@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -24,6 +25,7 @@ namespace BaeminShopScrapping
         int subtotal = 0;
         int shopcountersave = 0;
         int locationnumsave = 0;
+        long counter = 0;
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace BaeminShopScrapping
         private void button2_Click(object sender, EventArgs e)
         {
             if(th != null)
-            th.Abort();
+                th.Abort();
             Application.Exit();
         }
 
@@ -47,13 +49,14 @@ namespace BaeminShopScrapping
                 {
                     button1.Text = "Pause";
                     isStarted = true;
+                    timer1.Start();
                 }
                 else
                 {
                     button1.Text = "Start";
                     isStarted = false;
                     if (th != null)
-                        th.Abort();
+                        th.Suspend();
                     return;
                 }
                 th = new Thread(new ThreadStart(() =>
@@ -128,6 +131,11 @@ namespace BaeminShopScrapping
                     foreach (var (Latitude, Longitude) in coordinates)
                     {
                         locationNum++;
+                        int nCatTmp, nOffTmp;
+                        if (catindex != 0)
+                        {
+                            nCatTmp = catindex;
+                        }
                         this.Invoke(new Action(() =>
                         {
                             Lat.Text = Latitude.ToString();
@@ -226,7 +234,10 @@ namespace BaeminShopScrapping
                                 }
 
                             }
+
                         }
+                        catindex = 0;
+                        offset = 0;
                         locationnumsave = locationNum;
 
                     }
@@ -249,6 +260,46 @@ namespace BaeminShopScrapping
         {
             Lat.Enabled = true;
             Lon.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(isStarted)
+            {
+                counter++;
+            }
+            if(counter == 1200)
+            {
+                timer1.Stop();
+                counter = 0;
+                isStarted = false;
+                if (th != null)
+                {
+                    th.Suspend();
+                    MessageBox.Show("Stopped");
+                }
+                timer2.Start();
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (!isStarted)
+            {
+                counter++;
+            }
+            if (counter == 300)
+            {
+                timer2.Stop();
+                counter = 0;
+                isStarted = true;
+                if (th != null)
+                {
+                    th.Resume();
+                    MessageBox.Show("Resumed");
+                }
+                timer1.Start();
+            }
         }
     }
 }
