@@ -184,6 +184,13 @@ namespace BaeminShopScrapping
                                                     {
                                                         var dir = $"ShopMenus\\{shopnumber}";
                                                         Directory.CreateDirectory(dir);
+
+                                                        string shopdetailUrl = string.Format($@"https://shopdp-api.baemin.com/shop/{shopnumber}/info-detail?memberNumber=&lat={Latitude.ToString()}&lng={Longitude.ToString()}&sessionId=17b5632f7742526e26a535687&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=12.23.0&oscd=2&osver=32&dongCode=&zipCode=&ActionTrackingKey=Organic");
+                                                        RestClient detailclient = new RestClient(shopdetailUrl);
+                                                        string shopdetail = client.ExecuteGet(request).Content;
+
+                                                        File.WriteAllText(string.Format(@"{0}\{1}-detail.json", dir, shopnumber), shopdetail);
+
                                                         File.WriteAllText(string.Format(@"{0}\{1}.json", dir, shopnumber), strReturn);
                                                         if (shop["shopInfo"] != null)
                                                         File.WriteAllText(string.Format(@"{0}\{1}-logo.json", dir, shopnumber), shop["shopInfo"].ToString());
