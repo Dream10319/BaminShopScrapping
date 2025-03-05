@@ -190,8 +190,9 @@ namespace BaeminShopScrapping
                                                         shopcounter++;
                                                         jss = new JavaScriptSerializer();
                                                         data = jss.Deserialize<dynamic>(strReturn);
-                                                        dynamic groupMenus = data["data"]["shop_menu"]["menu_ord"]["groupMenus"];
-                                                        foreach(var groupMenu in groupMenus)
+                                                        //dynamic groupMenus = data["data"]["shop_menu"]["menu_ord"]["groupMenus"];
+                                                        dynamic groupMenus = data["data"]["shopMenu"]["groupMenus"];
+                                                        foreach (var groupMenu in groupMenus)
                                                         {
                                                             if(groupMenu["menus"] != null)
                                                             foreach (var menu in groupMenu["menus"])
@@ -276,7 +277,6 @@ namespace BaeminShopScrapping
                 if (th != null)
                 {
                     th.Suspend();
-                    MessageBox.Show("Stopped");
                 }
                 timer2.Start();
             }
@@ -296,7 +296,6 @@ namespace BaeminShopScrapping
                 if (th != null)
                 {
                     th.Resume();
-                    MessageBox.Show("Resumed");
                 }
                 timer1.Start();
             }
