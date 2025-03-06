@@ -47,7 +47,6 @@
             this.CategoryUpdown = new System.Windows.Forms.NumericUpDown();
             this.OffsetUpdown = new System.Windows.Forms.NumericUpDown();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryUpdown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffsetUpdown)).BeginInit();
@@ -55,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(78, 184);
+            this.button1.Location = new System.Drawing.Point(78, 190);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -65,7 +64,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(224, 184);
+            this.button2.Location = new System.Drawing.Point(224, 190);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -75,7 +74,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 143);
+            this.progressBar1.Location = new System.Drawing.Point(12, 149);
             this.progressBar1.Maximum = 10000;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(352, 23);
@@ -85,7 +84,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 61);
+            this.label1.Location = new System.Drawing.Point(12, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 3;
@@ -93,7 +92,7 @@
             // 
             // Lat
             // 
-            this.Lat.Location = new System.Drawing.Point(63, 58);
+            this.Lat.Location = new System.Drawing.Point(63, 64);
             this.Lat.Name = "Lat";
             this.Lat.Size = new System.Drawing.Size(100, 20);
             this.Lat.TabIndex = 4;
@@ -101,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(203, 61);
+            this.label2.Location = new System.Drawing.Point(203, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 5;
@@ -109,7 +108,7 @@
             // 
             // Lon
             // 
-            this.Lon.Location = new System.Drawing.Point(264, 58);
+            this.Lon.Location = new System.Drawing.Point(264, 64);
             this.Lon.Name = "Lon";
             this.Lon.Size = new System.Drawing.Size(100, 20);
             this.Lon.TabIndex = 6;
@@ -117,7 +116,7 @@
             // LocationNum
             // 
             this.LocationNum.AutoSize = true;
-            this.LocationNum.Location = new System.Drawing.Point(70, 122);
+            this.LocationNum.Location = new System.Drawing.Point(70, 128);
             this.LocationNum.Name = "LocationNum";
             this.LocationNum.Size = new System.Drawing.Size(44, 13);
             this.LocationNum.TabIndex = 7;
@@ -126,7 +125,7 @@
             // Category
             // 
             this.Category.AutoSize = true;
-            this.Category.Location = new System.Drawing.Point(160, 122);
+            this.Category.Location = new System.Drawing.Point(160, 128);
             this.Category.Name = "Category";
             this.Category.Size = new System.Drawing.Size(48, 13);
             this.Category.TabIndex = 8;
@@ -138,7 +137,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 33);
+            this.groupBox1.Size = new System.Drawing.Size(349, 38);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Option";
@@ -169,7 +168,7 @@
             // ShopCounter
             // 
             this.ShopCounter.AutoSize = true;
-            this.ShopCounter.Location = new System.Drawing.Point(265, 122);
+            this.ShopCounter.Location = new System.Drawing.Point(265, 128);
             this.ShopCounter.Name = "ShopCounter";
             this.ShopCounter.Size = new System.Drawing.Size(43, 13);
             this.ShopCounter.TabIndex = 10;
@@ -178,7 +177,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 87);
+            this.label3.Location = new System.Drawing.Point(22, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 11;
@@ -187,7 +186,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(179, 88);
+            this.label4.Location = new System.Drawing.Point(179, 94);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 13;
@@ -195,7 +194,7 @@
             // 
             // CategoryUpdown
             // 
-            this.CategoryUpdown.Location = new System.Drawing.Point(264, 85);
+            this.CategoryUpdown.Location = new System.Drawing.Point(264, 91);
             this.CategoryUpdown.Maximum = new decimal(new int[] {
             14,
             0,
@@ -207,7 +206,7 @@
             // 
             // OffsetUpdown
             // 
-            this.OffsetUpdown.Location = new System.Drawing.Point(63, 84);
+            this.OffsetUpdown.Location = new System.Drawing.Point(63, 90);
             this.OffsetUpdown.Name = "OffsetUpdown";
             this.OffsetUpdown.Size = new System.Drawing.Size(100, 20);
             this.OffsetUpdown.TabIndex = 15;
@@ -217,16 +216,11 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // timer2
-            // 
-            this.timer2.Interval = 1000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 219);
+            this.ClientSize = new System.Drawing.Size(376, 221);
             this.Controls.Add(this.OffsetUpdown);
             this.Controls.Add(this.CategoryUpdown);
             this.Controls.Add(this.label4);
@@ -245,7 +239,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BaeminShopScrapping";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryUpdown)).EndInit();
@@ -275,7 +271,6 @@
         private System.Windows.Forms.NumericUpDown CategoryUpdown;
         private System.Windows.Forms.NumericUpDown OffsetUpdown;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
     }
 }
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -128,14 +129,10 @@ namespace BaeminShopScrapping
                     // Output the list of coordinates
                     int locationNum = locationnumsave;
                     int shopcounter = shopcountersave;
-                    foreach (var (Latitude, Longitude) in coordinates)
+                    for (int n = 0; n < coordinates.Count; n++)
                     {
+                        var (Latitude, Longitude) = coordinates[n];
                         locationNum++;
-                        int nCatTmp, nOffTmp;
-                        if (catindex != 0)
-                        {
-                            nCatTmp = catindex;
-                        }
                         this.Invoke(new Action(() =>
                         {
                             Lat.Text = Latitude.ToString();
@@ -248,6 +245,10 @@ namespace BaeminShopScrapping
                         offset = 0;
                         locationnumsave = locationNum;
 
+                        // Remove the item that was just used
+                        coordinates.RemoveAt(n);
+                        n--; // Adjust index since we removed an element
+                        SaveCoordinates(filePath, coordinates);
                     }
                     if(locationNum > 0)
                     {
@@ -276,36 +277,61 @@ namespace BaeminShopScrapping
             {
                 counter++;
             }
-            if(counter == 1200)
+            if(counter == 600)
             {
-                timer1.Stop();
-                counter = 0;
-                isStarted = false;
-                if (th != null)
-                {
-                    th.Suspend();
-                }
-                timer2.Start();
+                RestartApplication();
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void RestartApplication()
         {
-            if (!isStarted)
+            string appPath = Application.ExecutablePath;
+            Process.Start(appPath);
+            Application.Exit(); 
+        }
+
+        static void SaveCoordinates(string filePath, List<(string Latitude, string Longitude)> coordinates)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                counter++;
-            }
-            if (counter == 300)
-            {
-                timer2.Stop();
-                counter = 0;
-                isStarted = true;
-                if (th != null)
+                writer.WriteLine("latitude   longitude"); // Write header
+                foreach (var (lat, lon) in coordinates)
                 {
-                    th.Resume();
+                    writer.WriteLine($"{lat}\t{lon}"); // Save remaining coordinates
                 }
-                timer1.Start();
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string logFilePath = "log.txt";
+
+            if (File.Exists(logFilePath))
+            {
+                string[] lines = File.ReadAllLines(logFilePath);
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("lat:"))
+                    {
+                        string[] parts = line.Split(',');
+                        foreach (string part in parts)
+                        {
+                            string[] keyValue = part.Split(':');
+                            if (keyValue.Length == 2)
+                            {
+                                string key = keyValue[0].Trim();
+                                string value = keyValue[1].Trim();
+
+                                //if (key == "lat") txtLatitude.Text = value;
+                                //if (key == "lon") txtLongitude.Text = value;
+                                if (key == "offset") OffsetUpdown.Value = Convert.ToDecimal(value);
+                                if (key == "catindex") CategoryUpdown.Value = Convert.ToDecimal(value);
+                            }
+                        }
+                    }
+                }
+            }
+            button1_Click(this, EventArgs.Empty);
         }
     }
 }
