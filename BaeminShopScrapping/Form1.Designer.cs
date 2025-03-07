@@ -196,7 +196,7 @@
             // 
             this.CategoryUpdown.Location = new System.Drawing.Point(264, 91);
             this.CategoryUpdown.Maximum = new decimal(new int[] {
-            14,
+            15,
             0,
             0,
             0});
@@ -207,6 +207,11 @@
             // OffsetUpdown
             // 
             this.OffsetUpdown.Location = new System.Drawing.Point(63, 90);
+            this.OffsetUpdown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.OffsetUpdown.Name = "OffsetUpdown";
             this.OffsetUpdown.Size = new System.Drawing.Size(100, 20);
             this.OffsetUpdown.TabIndex = 15;

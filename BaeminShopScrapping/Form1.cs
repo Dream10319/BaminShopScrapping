@@ -325,13 +325,20 @@ namespace BaeminShopScrapping
                                 //if (key == "lat") txtLatitude.Text = value;
                                 //if (key == "lon") txtLongitude.Text = value;
                                 if (key == "offset") OffsetUpdown.Value = Convert.ToDecimal(value);
-                                if (key == "catindex") CategoryUpdown.Value = Convert.ToDecimal(value);
+                                if (key == "catindex") CategoryUpdown.Value = Convert.ToDecimal(value) + 1;
                             }
                         }
                     }
                 }
             }
             button1_Click(this, EventArgs.Empty);
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            if (th != null)
+                th.Abort();
+            base.OnFormClosed(e);
         }
     }
 }
