@@ -62,7 +62,8 @@ namespace BaeminShopScrapping
                 }
                 th = new Thread(new ThreadStart(() =>
                 {
-                    string filePath = @"locationinfo.txt"; // Adjust the path to where your file is stored.
+                    
+                    string filePath = AppDomain.CurrentDomain.BaseDirectory + @"locationinfo.txt"; // Adjust the path to where your file is stored.
 
                     // Regular expression to match one or more spaces or tabs
                     Regex delimiterRegex = new Regex(@"[\s\t]+");
@@ -235,7 +236,7 @@ namespace BaeminShopScrapping
                                 }
                                 catch (Exception ex)
                                 {
-
+                                    
                                 }
 
                             }
