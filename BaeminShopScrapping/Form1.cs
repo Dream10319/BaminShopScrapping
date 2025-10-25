@@ -27,8 +27,8 @@ namespace BaeminShopScrapping
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(th != null)
-            th.Abort();
+            if (th != null)
+                th.Abort();
             Application.Exit();
         }
 
@@ -48,7 +48,7 @@ namespace BaeminShopScrapping
                     List<(string Latitude, string Longitude)> coordinates = new List<(string, string)>();
 
                     // Read the file line by line
-                    if(radioButton1.Checked)
+                    if (radioButton1.Checked)
                     {
                         try
                         {
@@ -124,14 +124,14 @@ namespace BaeminShopScrapping
                             }));
                             int shopcount = 2000;
                             int totalcount = 0;
-                            for (int i = 0 ; i <= (int)(shopcount / 30); i++)
+                            for (int i = 0; i <= (int)(shopcount / 30); i++)
                             {
                                 try
                                 {
                                     strUrl = string.Format(@"https://shopdp-api.baemin.com/v4/FOOD_CATEGORY/shops?displayCategory={3}&longitude={0}&latitude={1}&sort=SORT__DEFAULT&filter=&offset={2}&limit=30&extension=&perseusSessionId=1718023403008.788454282780365941.FWy8AA9FNv&memberNumber=000000000000&sessionId=b4e3292329dfd570f054c8&carrier=302780&site=7jWXRELC2e&dvcid=OPUD6086af457479a7bb&adid=aede849f-5e9c-499f-827f-cb4e5c65d801&deviceModel=SM-G9500&appver=15.13.3&oscd=2&osver=32&dongCode=11140102&zipCode=04522&actionTrackingKey=4557", Longitude.ToString(), Latitude.ToString(), 25 * i, category["text"].ToString());
                                     client = new RestClient(strUrl);
                                     strReturn = client.ExecuteGet(request).Content;
-                                    if(strReturn.Contains("SUCCESS"))
+                                    if (strReturn.Contains("SUCCESS"))
                                     {
                                         jss = new JavaScriptSerializer();
                                         data = jss.Deserialize<dynamic>(strReturn);
@@ -181,19 +181,19 @@ namespace BaeminShopScrapping
                                     {
                                         shopcount = 0;
                                     }
-                                    
+
                                 }
                                 catch (Exception ex)
                                 {
-                                    
+
                                 }
-                                
+
                             }
-                            
+
                         }
 
                     }
-                    if(locationNum > 0)
+                    if (locationNum > 0)
                     {
                         progressBar1.Value = 10000;
                         MessageBox.Show("Successfully done!!!");
@@ -201,7 +201,7 @@ namespace BaeminShopScrapping
                 }));
                 th.Start();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(LocationNum.Text);
