@@ -35,7 +35,7 @@ namespace BaeminShopScrapping
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(th != null)
+            if (th != null)
                 th.Abort();
             Application.Exit();
         }
@@ -46,7 +46,7 @@ namespace BaeminShopScrapping
             {
                 offset = (int)OffsetUpdown.Value;
                 catindex = (int)CategoryUpdown.Value;
-                if(!isStarted)
+                if (!isStarted)
                 {
                     button1.Text = "Pause";
                     isStarted = true;
@@ -62,7 +62,7 @@ namespace BaeminShopScrapping
                 }
                 th = new Thread(new ThreadStart(() =>
                 {
-                    
+
                     string filePath = AppDomain.CurrentDomain.BaseDirectory + @"locationinfo.txt"; // Adjust the path to where your file is stored.
 
                     // Regular expression to match one or more spaces or tabs
@@ -72,7 +72,7 @@ namespace BaeminShopScrapping
                     List<(string Latitude, string Longitude)> coordinates = new List<(string, string)>();
 
                     // Read the file line by line
-                    if(radioButton1.Checked)
+                    if (radioButton1.Checked)
                     {
                         try
                         {
@@ -206,7 +206,7 @@ namespace BaeminShopScrapping
 
                                                         File.WriteAllText(string.Format(@"{0}\{1}.json", dir, shopnumber), strReturn);
                                                         if (shop["shopInfo"] != null)
-                                                        File.WriteAllText(string.Format(@"{0}\{1}-logo.json", dir, shopnumber), shop["shopInfo"].ToString());
+                                                            File.WriteAllText(string.Format(@"{0}\{1}-logo.json", dir, shopnumber), shop["shopInfo"].ToString());
                                                         shopcounter++;
                                                         jss = new JavaScriptSerializer();
                                                         data = jss.Deserialize<dynamic>(strReturn);
@@ -214,25 +214,25 @@ namespace BaeminShopScrapping
                                                         dynamic groupMenus = data["data"]["menuPan"]["menuGroups"];
                                                         foreach (var groupMenu in groupMenus)
                                                         {
-                                                            if(groupMenu["menus"] != null)
-                                                            foreach (var menu in groupMenu["menus"])
-                                                            {
-                                                                strUrl = string.Format($@"https://shop-detail-api.baemin.com/api/v1/shops/{shopnumber}/menus/{menu["menuId"]}?mem=000000000000&availableMenuReceivingTypes=DELIVERY&availableOrderTypes=DELIVERY&selectedOrderType=DELIVERY&sessionId=052656a48346e0a1e738a54&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=15.13.3&oscd=2&osver=32&dongCode=41210103&zipCode=14309&perseusClientId=1758202708009.785757936779787763.8E8Pqm5o1O&perseusSessionId=1759550313005.599510435655348598.LnowXl1Imo&actionTrackingKey=Organic");
-                                                                client = new RestClient(strUrl);
-                                                                strReturn = client.ExecuteGet(inforequest).Content;
-                                                                File.WriteAllText(string.Format(@"{0}\{1}-{2}.json", dir, shopnumber, menu["menuId"]), strReturn);
-                                                                this.Invoke(new Action(() =>
+                                                            if (groupMenu["menus"] != null)
+                                                                foreach (var menu in groupMenu["menus"])
                                                                 {
-                                                                    progressBar1.Value = (int)((10000 * totalcount) / shopcount);
-                                                                }));
-                                                                this.Invoke(new Action(() =>
-                                                                {
-                                                                    ShopCounter.Text = shopcounter.ToString();
-                                                                }));
-                                                                shopcountersave = shopcounter;
-                                                                subtotal = totalcount;
-                                                            }  
-                                                        }  
+                                                                    strUrl = string.Format($@"https://shop-detail-api.baemin.com/api/v1/shops/{shopnumber}/menus/{menu["menuId"]}?mem=000000000000&availableMenuReceivingTypes=DELIVERY&availableOrderTypes=DELIVERY&selectedOrderType=DELIVERY&sessionId=052656a48346e0a1e738a54&carrier=302780&site=7jWXRELC2e&dvcid=OPUDf48850e556873dfc&adid=4bd027e0-d307-4740-8866-a9e00e4861f1&deviceModel=SM-G9500&appver=15.13.3&oscd=2&osver=32&dongCode=41210103&zipCode=14309&perseusClientId=1758202708009.785757936779787763.8E8Pqm5o1O&perseusSessionId=1759550313005.599510435655348598.LnowXl1Imo&actionTrackingKey=Organic");
+                                                                    client = new RestClient(strUrl);
+                                                                    strReturn = client.ExecuteGet(inforequest).Content;
+                                                                    File.WriteAllText(string.Format(@"{0}\{1}-{2}.json", dir, shopnumber, menu["menuId"]), strReturn);
+                                                                    this.Invoke(new Action(() =>
+                                                                    {
+                                                                        progressBar1.Value = (int)((10000 * totalcount) / shopcount);
+                                                                    }));
+                                                                    this.Invoke(new Action(() =>
+                                                                    {
+                                                                        ShopCounter.Text = shopcounter.ToString();
+                                                                    }));
+                                                                    shopcountersave = shopcounter;
+                                                                    subtotal = totalcount;
+                                                                }
+                                                        }
                                                     }
                                                 }
                                                 catch (Exception ex)
@@ -251,7 +251,7 @@ namespace BaeminShopScrapping
                                 }
                                 catch (Exception ex)
                                 {
-                                    
+
                                 }
 
                             }
@@ -266,7 +266,7 @@ namespace BaeminShopScrapping
                         n--; // Adjust index since we removed an element
                         SaveCoordinates(filePath, coordinates);
                     }
-                    if(locationNum > 0)
+                    if (locationNum > 0)
                     {
                         progressBar1.Value = 10000;
                         MessageBox.Show("Successfully done!!!");
@@ -274,7 +274,7 @@ namespace BaeminShopScrapping
                 }));
                 th.Start();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(LocationNum.Text);
@@ -289,11 +289,11 @@ namespace BaeminShopScrapping
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(isStarted)
+            if (isStarted)
             {
                 counter++;
             }
-            if(counter == 600)
+            if (counter == 600)
             {
                 RestartApplication();
             }
@@ -303,7 +303,7 @@ namespace BaeminShopScrapping
         {
             string appPath = Application.ExecutablePath;
             Process.Start(appPath);
-            Application.Exit(); 
+            Application.Exit();
         }
 
         static void SaveCoordinates(string filePath, List<(string Latitude, string Longitude)> coordinates)
